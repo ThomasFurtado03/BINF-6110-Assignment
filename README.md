@@ -1,5 +1,3 @@
-# BINF-6110-Assignment
-
 INTRODUCTION
 
 Salmonella is a highly prevalent foodborne pathogen which poses great concern to global health. Salmonella can cause conditions such as gastroenteritis which consists of symptoms such as  fever, diarrhea and abdominal cramps. There are more than 2600 serotypes of Salmonella enterica, each being distinguished by differences in their surface antigens (Mileto et al., 2025).
@@ -18,6 +16,25 @@ In this study, Nanopore sequencing data from Salmonella enterica will be utilize
 METHODS
 
 Nanopore long-read sequencing data from Salmonella enterica will serve as a starting point for genome assembly. First, the raw reads will be subject to quality control measures to remove low quality and short sequences, before assembly begins. The now filtered reads will be assembled de novo using the Flye assembler, which is optimal for long-read genome reconstruction (Zhao et al., 2023). The assemblies will then be refined and polished using Medaka to reduce base-level errors, which are commonly associated with Nanopore sequencing. Assembly accuracy will be evaluated by performing an alignment between the polished genome, and a high-quality reference genome from NCBI (Zhao et al., 2023). The alignment results will then be visualized in order to assess the sequence accuracy (Wick et al., 2023)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
