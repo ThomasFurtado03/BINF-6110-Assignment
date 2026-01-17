@@ -22,7 +22,7 @@ In this study, Nanopore sequencing data from _Salmonella enterica_ will be utili
 
 Nanopore long-read sequencing data from _Salmonella enterica_ will serve as a starting point for genome assembly. First, the raw reads will be subject to quality control measures to remove low quality and short sequences, before assembly begins. The now filtered reads will be assembled de novo using the Flye assembler, which is optimal for long-read genome reconstruction (Zhao _et al._, 2023). The assemblies will then be refined and polished using Medaka to reduce base-level errors, which are commonly associated with Nanopore sequencing. Assembly accuracy will be evaluated by performing an alignment between the polished genome, and a high-quality reference genome from NCBI (Zhao _et al._, 2023). The alignment results will then be visualized in order to assess the sequence accuracy (Wick _et al._, 2023)
 
-References
+**References**
 
 Mileto, I., Romano, G., Gaiarsa, S., Grassia, G., Bagnarino, J., Piralla, A., Monzillo, V., Cambieri, P., Baldanti, F., & Corbella, M. (2025). Whole genome sequencing as a reliable alternative for salmonella serotyping: A comparative study with the gold-standard method. _Frontiers in Microbiology_, _16_. <https://doi.org/10.3389/fmicb.2025.1685741>
 
