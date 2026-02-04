@@ -50,7 +50,7 @@ Assembly structure was examined using Bandage, which visualizes assembly graphs 
 
 
 
-**Results**
+**RESULTS**
 
 Read preprocessing
 
