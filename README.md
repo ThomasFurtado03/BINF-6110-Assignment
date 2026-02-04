@@ -52,6 +52,14 @@ Assembly structure was examined using Bandage, which visualizes assembly graphs 
 
 **Results**
 
+Read preprocessing
+
+Oxford Nanopore long-read sequencing data from _Salmonella enterica_ isolate SRR32410565 were quality asessed and filtered prior to assembly. After trimming (<Q10, and <1000 bp removed) 193,835 reads (98.9%) were retained. This indicates that only a small fraction of the reads failed to pass the quality paramaters. The filtered dataset was used for all downstream analysis.
+
+Genome assembly
+
+De novo assembly with Flye produced a draft genome consisting of three contigs. Two large contigs represented a great majority of the chromosomal sequence, while the third smaller contif (~109 kb) was circularized by the assembler, characteristic of a plasmid element. Visualization of the asdembly graph revealed two major chromosomal compontents (~3.3 and 1.7 Mb) connected by a short linker (~6.3 kb) (Figure 1).
+
 
 ## Figure 1. Assembly graph (Bandage)
 
@@ -59,6 +67,26 @@ Assembly structure was examined using Bandage, which visualizes assembly graphs 
 
 **Figure 1. Assembly graph of the _Salmonella enterica_ SRR32410565 draft genome visualized in Bandage.**  
 Bandage visualization of the Flye long-read assembly produced from Oxford Nanopore R10 sequencing data. The assembly consists of two large chromosomal contigs (3.31 Mb and 1.67 Mb) connected by an unresolved repeat junction (~6.3 kb), consistent with fragmentation at repetitive genomic regions. A third separate circular contig of 109 kb was recovered, suggesting the presence of an extrachromosomal plasmid replicon. Contig lengths are indicated directly on the assembly graph.
+
+
+Assembly quality metrics
+
+Assembly evaluation using QUAST reported a total assembled genome length of 5,104,813 bp with a GC content of 52.19%. The assembly was highly contiguous with an N50 of 3,318,776 bp. No ambiguous bases were detected (0 N's per 100 kbp). These metrics indicate a complete bacterial-scale draft genome (REFERENCE) reconstructed using only three contigs.
+
+Alignment to the LT2 reference genome
+
+Trimmed nanopore reads were aligned to the _Salmonella enterica_ Typhimuriu LT2 reference genome (chromosome NC_03197.2 and plasmis NC_003277.2). Read mapping achieved a high alignment rate, with 191,424 reads mapped (94.3%). This supports a storng overall similarity between the sequenced isolate and the reference background.
+
+Variant discovery reltive to the reference
+
+Variant calling with Longshot identified 9,507 total sequence variants in the trimmed reads, compared to the LT2 reference genome. All detected variants were SNPs, with no indels reported. The callset showed a transition/transversion ratio of 1.13.
+
+Variants were unevenly distributed across replicons however. A total of 2,882 SNPs were detected on the LT2 chromosome, while 6,625 SNPs were detected on the plasid contig. This indicated a notably higher rate of polymorphism on the plasmid sequence, opposed to the chromosomal sequence.
+
+Gene-associated SNP visualized in IGV
+
+Representative chromosomal SNP evidence was visualized in IGV. One indluding a variant located within the thrA locus, which encodes a bifunctional enzyme involved in amino acid biosynthesis. Figure 2 shows a zoomed-in view of the read-level support for the alternate allele (Figure 2A) and an overview of the locus (Figure 2B). Plasmid-associated variants dominated the plasmid sequence. Among the plentiful ammount of SNPs observed in the plasmid a SNP overlapping the repC gene, which encodes a replication-associated protein, is visualized in Figure 3.
+
 
 ## Figure 2. Chromosomal SNP in thrA (IGV)
 
