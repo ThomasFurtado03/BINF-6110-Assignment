@@ -22,31 +22,31 @@ In this study, Nanopore sequencing data from _Salmonella enterica_ will be utili
 
 Genome sequencing data acquisition
 
-Oxford Nanopore long-read whole genome sequencing (WGS) data for salmonella enterica were obtained from the NCBI Sequence Read Archive (SRA) under the accession SRR32410565. Long-read sequencing has become an increasingly reliable source for bacterial genomics, as the extended read lengths enable improved reconstruction of repetitive regions, compared to short-read methods (Tyler et al., 2018; Zhao et al., 2023). Raw SRA files were downloaded directly and converted into FASTQ format using the SRA toolkit (fasterq-dump). All downstream analyses were performed on the Compute Canada Narval high-performance computing cluster, using a dedicated Conda environment.
+Oxford Nanopore long-read whole genome sequencing (WGS) data for _Salmonella enterica_ were obtained from the NCBI Sequence Read Archive (SRA) under the accession SRR32410565. Long-read sequencing has become an increasingly reliable source for bacterial genomics, as the extended read lengths enable improved reconstruction of repetitive regions, compared to short-read methods (Tyler _et al._, 2018; Zhao _et al._, 2023). Raw SRA files were downloaded directly and converted into FASTQ format using the SRA toolkit (fasterq-dump). All downstream analyses were performed on the Compute Canada Narval high-performance computing cluster, using a dedicated Conda environment.
 
 Read quality control and filtering
 
-Initial quality assessment of the raw nanopore reads was performed by using FastQC, which evaluates sequencing quality metrics including per-base quality profiles, nucleotide composition, and GC distribution. As expected for nanopore long-reads, there were observed quality warnings, reflecting the characteristic error of third-generation sequencing platforms (Tyler et al., 2018). To improve the accuracy of the assembly, the reads were filtered and trimmed using Cutadapt. Low-quality bases below Q10 were removed, and reads shorter than 1000 base pairs were excluded.
+Initial quality assessment of the raw nanopore reads was performed by using FastQC, which evaluates sequencing quality metrics including per-base quality profiles, nucleotide composition, and GC distribution. As expected for nanopore long-reads, there were observed quality warnings, reflecting the characteristic error of third-generation sequencing platforms (Tyler _et al._, 2018). To improve the accuracy of the assembly, the reads were filtered and trimmed using Cutadapt. Low-quality bases below Q10 were removed, and reads shorter than 1000 base pairs were excluded.
 
 De novo genome assembly
 
-A draft genome was generated using Flye, a long-read assembler designed for noisy nanopore sequencing data. Flye using graph-based approaches and has been shown to work effectively for bacterial genome reconstruction, using nanopore reads alone (Wick et al., 2023). The trimmed reads were assembled using --nano-hq preset.
+A draft genome was generated using Flye, a long-read assembler designed for noisy nanopore sequencing data. Flye using graph-based approaches and has been shown to work effectively for bacterial genome reconstruction, using nanopore reads alone (Wick _et al._, 2023). The trimmed reads were assembled using --nano-hq preset.
 
 Assembly evaluation and quality assessment
 
-The quality of the assembly was evaluated using QUAST, providing metrics such as genome length, contig count, N50, GC content, and ambiguous base frequency. QUAST is widely used for evaluation bacterial genome completeness and consistency (Wick et al., 2023).
+The quality of the assembly was evaluated using QUAST, providing metrics such as genome length, contig count, N50, GC content, and ambiguous base frequency. QUAST is widely used for evaluation bacterial genome completeness and consistency (Wick _et al._, 2023).
 
 Reference genome retrieval
 
-Comparative analysis was performed using the Salmonella enterica serovar Typhimurium LT2 reference genome (NCBI accession GCF\_000006945.2). The reference genome was was downloaded form RefSeq and indexed for alignment.
+Comparative analysis was performed using the _Salmonella enterica_ serovar Typhimurium LT2 reference genome (NCBI accession GCF\_000006945.2). The reference genome was was downloaded form RefSeq and indexed for alignment.
 
 Read mapping and alignment
 
-Single nucleotide variants relative to the reference genome were identified using Longshot, a variant caller developed for SNP detection form long-read alignments. The trimmed and filtered nanopore reads were mapped to the reference genome to identify SNPs. The reference FASTA was indexed using samtools faidx, and variants were called using the default parameters of Longshot. Variant-based genomic comparison is a widely applied strategy in Salmonella epidemiology, and serotype-level differentiation (Mileto et al., 2025).
+Single nucleotide variants relative to the reference genome were identified using Longshot, a variant caller developed for SNP detection form long-read alignments. The trimmed and filtered nanopore reads were mapped to the reference genome to identify SNPs. The reference FASTA was indexed using samtools faidx, and variants were called using the default parameters of Longshot. Variant-based genomic comparison is a widely applied strategy in _Salmonella_ epidemiology, and serotype-level differentiation (Mileto _et al._, 2025).
 
 Visualization
 
-Assembly structure was examined using Bandage, which visualizes assembly graphs and identifies circular replicons. Variant evidence was inspected using IGV, allowing for manual evaluation of read-level support of SNPs for both the chromosome, and the plasmid. Using this workflow for long-read sequencing has been shown as valuable for resolving plasmid-associated variation (Zhao et al., 2023; Wick et al., 2023)
+Assembly structure was examined using Bandage, which visualizes assembly graphs and identifies circular replicons. Variant evidence was inspected using IGV, allowing for manual evaluation of read-level support of SNPs for both the chromosome, and the plasmid. Using this workflow for long-read sequencing has been shown as valuable for resolving plasmid-associated variation (Zhao _et al._, 2023; Wick _et al._, 2023)
 
 **References**
 
