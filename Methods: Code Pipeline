@@ -1,0 +1,80 @@
+# 1. Download raw reads from NCBI SRA
+wget https://sra-pub-run-odp.s3.amazonaws.com/sra/SRR32410565/SRR32410565
+
+# 2. Convert SRA → FASTQ
+fasterq-dump SRR32410565 --threads 8
+
+# 3. Compress FASTQ
+gzip SRR32410565.fastq
+
+# 4. Raw read QC
+mkdir -p fastqc_raw
+fastqc SRR32410565.fastq.gz -o fastqc_raw
+
+# 5. Trim low-quality reads
+mkdir -p trimmed_reads
+cutadapt -q 10 -m 1000 \
+  -o trimmed_reads/SRR32410565.trimmed.fastq.gz \
+  SRR32410565.fastq.gz
+
+# 6. Assemble genome
+mkdir -p flye_assembly
+flye --nano-hq trimmed_reads/SRR32410565.trimmed.fastq.gz \
+  --out-dir flye_assembly \
+  --threads 8
+
+# 7. Collect metrics with QUAST
+quast.py flye_assembly/assembly.fasta -o quast_results --threads 8
+
+# 8. Collect reference genome
+#accession GCF_000006945.2
+mkdir -p reference
+cd reference
+wget -O salmonella_ref.fasta.gz https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/945/GCF_000006945.2_ASM694v2/GCF_000006945.2_ASM694v2_genomic.fna.gz
+
+gunzip salmonella_ref.fasta.gz
+
+# 9. Align assembly to reference
+
+minimap2 -ax asm5 -t 8 \
+> reference/salmonella_ref.fasta \
+> flye_assembly/assembly.fasta > assembly_ref_comparison.sam
+
+
+# 10. Convert sam to bam, prepare for IGV
+
+samtools view -b assembly_ref_comparison.sam | samtools sort -o assembly_ref_comparison.bam
+samtools index assembly_ref_comparison.bam
+samtools flagstat assembly_ref_comparison.bam
+
+# 11. Align raw reads to reference genome(for variant calling), prepare for IGV
+
+
+minimap2 -ax map-ont -t 8 \
+> reference/salmonella_ref.fasta \
+> trimmed_reads/SRR32410565.trimmed.fastq.gz > reads_vs_ref.sam
+
+samtools view -b reads_vs_ref.sam | samtools sort -o reads_vs_ref.bam
+samtools flagstat reads_vs_ref.bam
+
+# 12. Variant calling (raw reads and ref) with longshot
+
+
+samtools faidx reference/salmonella_ref.fasta
+#Prepare ref genome for Longshot
+samtools index reads_vs_ref.bam
+#create index necessay for longshot
+
+longshot \
+  --bam reads_vs_ref.bam \
+  --ref reference/salmonella_ref.fasta \
+  --out variants.vcf \
+  --sample_id SRR32410565
+
+grep -v "^#" variants.vcf | wc -l > results/variants_stats.txt
+
+# 13. Obtain gff for IGV vizualization
+wget -O salmonella_LT2.gff.gz \
+https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/945/GCF_000006945.2_ASM694v2/GCF_000006945.2_ASM694v2_genomic.gff.gz
+
+gunzip salmonella_LT2.gff.gz
