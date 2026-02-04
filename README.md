@@ -71,7 +71,7 @@ Bandage visualization of the Flye long-read assembly produced from Oxford Nanopo
 
 Assembly quality metrics
 
-Assembly evaluation using QUAST reported a total assembled genome length of 5,104,813 bp with a GC content of 52.19%. The assembly was highly contiguous with an N50 of 3,318,776 bp. No ambiguous bases were detected (0 N's per 100 kbp). These metrics indicate a complete bacterial-scale draft genome (REFERENCE) reconstructed using only three contigs.
+Assembly evaluation using QUAST reported a total assembled genome length of 5,104,813 bp with a GC content of 52.19%. The assembly was highly contiguous with an N50 of 3,318,776 bp. No ambiguous bases were detected (0 N's per 100 kbp). These metrics indicate a complete bacterial-scale draft genome (Wick _et al._, 2023) reconstructed using only three contigs.
 
 Alignment to the LT2 reference genome
 
@@ -85,7 +85,7 @@ Variants were unevenly distributed across replicons however. A total of 2,882 SN
 
 Gene-associated SNP visualized in IGV
 
-Representative chromosomal SNP evidence was visualized in IGV. One indluding a variant located within the thrA locus, which encodes a bifunctional enzyme involved in amino acid biosynthesis. Figure 2 shows a zoomed-in view of the read-level support for the alternate allele (Figure 2A) and an overview of the locus (Figure 2B). Plasmid-associated variants dominated the plasmid sequence. Among the plentiful ammount of SNPs observed in the plasmid a SNP overlapping the repC gene, which encodes a replication-associated protein, is visualized in Figure 3.
+Representative chromosomal SNP evidence was visualized in IGV. One indluding a variant located within the thrA locus, which encodes a bifunctional enzyme involved in amino acid biosynthesis(UniProt A0A8F6NGR0). Figure 2 shows a zoomed-in view of the read-level support for the alternate allele (Figure 2A) and an overview of the locus (Figure 2B). Plasmid-associated variants dominated the plasmid sequence. Among the plentiful ammount of SNPs observed in the plasmid a SNP overlapping the repC gene, which encodes a replication-associated protein (Haneda _et al._, 2001), is visualized in Figure 3.
 
 
 ## Figure 2. Chromosomal SNP in thrA (IGV)
@@ -118,3 +118,5 @@ Wick, R. R., Judd, L. M., & Holt, K. E. (2023). Assembling the perfect bacterial
 Tyler, A. D., Mataseje, L., Urfano, C. J., Schmidt, L., Antonation, K. S., Mulvey, M. R., & Corbett, C. R. (2018). Evaluation of Oxford Nanopore's minion sequencing device for microbial whole genome sequencing applications. _Scientific Reports_, _8_(1). <https://doi.org/10.1038/s41598-018-29334-5>
 
 Edge, P., & Bansal, V. (2019). Longshot enables accurate variant calling in diploid genomes from single-molecule long read sequencing. Nature Communications, 10(1). https://doi.org/10.1038/s41467-019-12493-y 
+
+Haneda, T., Okada, N., Nakazawa, N., Kawakami, T., & Danbara, H. (2001). Complete DNA sequence and comparative analysis of the 50-kilobase virulence plasmid of             salmonella enterica             Serovar Choleraesuis. Infection and Immunity, 69(4), 2612–2620. https://doi.org/10.1128/iai.69.4.2612-2620.2001 
