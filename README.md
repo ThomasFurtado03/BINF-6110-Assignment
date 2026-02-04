@@ -48,6 +48,37 @@ Visualization
 
 Assembly structure was examined using Bandage, which visualizes assembly graphs and identifies circular replicons. Variant evidence was inspected using IGV, allowing for manual evaluation of read-level support of SNPs for both the chromosome, and the plasmid. Using this workflow for long-read sequencing has been shown as valuable for resolving plasmid-associated variation (Zhao _et al._, 2023; Wick _et al._, 2023)
 
+
+
+**Results**
+
+
+## Figure 1. Assembly graph (Bandage)
+
+![Figure 1: Bandage assembly](figures/Figure1.png)
+
+**Figure 1. Assembly graph of the _Salmonella enterica_ SRR32410565 draft genome visualized in Bandage.**  
+Bandage visualization of the Flye long-read assembly produced from Oxford Nanopore R10 sequencing data. The assembly consists of two large chromosomal contigs (3.31 Mb and 1.67 Mb) connected by an unresolved repeat junction (~6.3 kb), consistent with fragmentation at repetitive genomic regions. A third separate circular contig of 109 kb was recovered, suggesting the presence of an extrachromosomal plasmid replicon. Contig lengths are indicated directly on the assembly graph.
+
+## Figure 2. Chromosomal SNP in thrA (IGV)
+
+![Figure 2: Chromosomal SNP](figures/FIGURE2.png)
+
+**Figure 2. Chromosomal single nucleotide polymorphism (SNP) relative to the LT2 reference genome detected within the thrA locus.**  
+(A) Zoomed-in view of the same locus showing the candidate SNP supported by multiple independent nanopore reads. The alternate allele is visible as a consistent base mismatch relative to the reference sequence, demonstrating strong read-level evidence for chromosomal divergence at a metabolically important gene.
+(B) IGV overview of read alignments mapped to the Salmonella enterica serovar Typhimurium LT2 chromosome (NC_003197.2), highlighting a SNP-supported variant site within the genomic region containing thrA, a bifunctional enzyme involved in threonine and methionine biosynthesis. Coverage depth across the region remains consistent, supporting reliable variant detection.
+
+## Figure 3. Plasmid-associated SNP in repC
+
+![Figure 3: Plasmid SNP in repC](figures/Figure3.png)
+IGV snapshot of a representative variant identified on the LT2 plasmid contig (NC_003277.2). The SNP overlaps the repC gene, which encodes a replication-associated protein important for plasmid maintenance and copy control. Aligned nanopore reads show strong support for the alternate allele at this position, consistent with elevated plasmid divergence relative to the chromosomal background.
+
+
+
+
+
+
+
 **References**
 
 Mileto, I., Romano, G., Gaiarsa, S., Grassia, G., Bagnarino, J., Piralla, A., Monzillo, V., Cambieri, P., Baldanti, F., & Corbella, M. (2025). Whole genome sequencing as a reliable alternative for salmonella serotyping: A comparative study with the gold-standard method. _Frontiers in Microbiology_, _16_. <https://doi.org/10.3389/fmicb.2025.1685741>
