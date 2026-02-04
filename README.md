@@ -102,6 +102,26 @@ Representative chromosomal SNP evidence was visualized in IGV. One indluding a v
 IGV snapshot of a representative variant identified on the LT2 plasmid contig (NC_003277.2). The SNP overlaps the repC gene, which encodes a replication-associated protein important for plasmid maintenance and copy control. Aligned nanopore reads show strong support for the alternate allele at this position, consistent with elevated plasmid divergence relative to the chromosomal background.
 
 
+**DISCUSSION**
+
+This project used Oxford Nanopore long-read sequencing data to generate a draft _Salmonella enterica_ genome assembly, and to characterize variation in comparison to the _S. enterica_ Typhimurium LT2 reference. Using a long-read only workflow, the genome was assebled into three contigs. One of the contigs was distinct in its curcularity, consistent with a plasmid element (Figure 1).
+
+The Flye assembly produced a bacterial-scale genome, totalling approximately 5.10 Mb, with storng contiguity metrics and no detected ambiguous bases. The recovery of only three contigs is a measure of success. It shows that the genome was largely reconstructed, though not fully closed into one contig. Notably, the presence of a separate circular componenet is consistent with the expectation that _Salmonella_ isolates frequently carry plasmids which can be assemled as individual replicons. Virulence-associated plasmids in _Salmonella_ are typically low-copy, yet stable elements that encode for both replication and maintenence systems (Lobato-Marquez _et al._, 2016).
+
+Variant calling identified 9,507 SNPs relative to the LT2 reference genome, with a notablly uneven distribution between the chromosome and plasmid. Most of the SNPs were located on the plasmid contig (NC_003277.2), suggesting there is massive divergence between the plasmid of the isolate, and the plasmid of the reference. This is quite plasuible, as _Salmonella_ virulence plasmids show variation in gene content, replication modules, and host adaptation across strains. Comparative seqeuncing of virulence plasmids has showed that the backbones of plasmids are usually conserved quite well, but deleltion events, horizontal acquisition, and differences in the replicon region can lead to notable plasmid diversity (Haneda _et al._, 2001).
+
+Additionally, plasmids are shaped by strong selective factors related to things such as virulence, antibiotic resistance, and stability systems. These factors may accelerate divergence of the plasmid conpared to the chromosome. The pSLT plasmid of _S. Typhimurium_, for example, encodes several maintenance modules such as toxin-antitoxin systems that promote plasmid inheritance (Lobato-Marquez _et al._, 2016). Variation affecting the plasmid replication or maintenance genes could therefore influence the plasmid persistence within a bacterial population.
+
+To connect sequence variation with biological function, representative SNPs were manually inspected in IGV. A chromosomal SNP was observed at position 831, within the thrA locus (Figure 2) which encodes a dual-functioning enzyme which is involved in the biosynthesis of threonine and methionine. Variants in core metabolic genes would be likely to greatly alter the fitness of that particular strain, although precise functional consequences cannot be predicted without further experimental validation.
+
+On the plasmid, an SNP in the repC gene was visualized (Figure 3). Genes associated with replication are central components of the replicon in virulence plasmids, which often resemble RepFIB-like systems conserved among _Salmonella_ plasmids (Haneda _et al._, 2001). Due to the fact that plasmids are maintained at a low copy number, any mutations affecting replication of segregation systems could, in theory, influence plasmid stability or compatibility, although this cannot be concluded from sequence data alone. (Lobato-Marquez _et al._, 2016).
+
+While these SNP calls likely reflect genuine biological differences, it is also important to interpret nanopore-derived sets cautiously. Oxford Nanopore sequencing is susceptible to systematic errors, particularly with indels in homopolymer regions and other base calling artifacts. Polishing tools such as Homopolish were developed specifically to reduce these systematic assembly errors and improve the accuracy of the consensus (Huang _et al._, 2021). In addition however, DNA base modifications can generate mismatch errors that are not fully corrected by standard polishing procedures, this can potentially inflate the apparent SNP counts in some datasets (Chiou _et al._, 2023). Because this procedure did not include any extensive polishing, some fraction of the detected variation may represent residual sequencing artifacts rather than true biological substitutions.
+
+
+**CONCLUSIONS AND FUTURE DIRECTIONS**
+
+In summary, this analysis demonstrates that Nanopore long-read sequencing can generate a highly contiguous draft _Salmonella enterica_ genome assembly, and identify thousands of nucleotide differences in comparison to a standard reference genome. The observed strong enrichment of SNPs on the plasmid contig highlights plasmid diversity as a large contributer to genetic variation in _Salmonella_. Future improvements could include thorough polishing steps, improved functional annotation, and comparative analysis using a more closely related reference plasmid to better divergence from artifacts of Nanopore sequencing data (Huang _et al._, 2021; Chiou _et al._, 2023)
 
 
 
@@ -119,4 +139,10 @@ Tyler, A. D., Mataseje, L., Urfano, C. J., Schmidt, L., Antonation, K. S., Mulve
 
 Edge, P., & Bansal, V. (2019). Longshot enables accurate variant calling in diploid genomes from single-molecule long read sequencing. Nature Communications, 10(1). https://doi.org/10.1038/s41467-019-12493-y 
 
-Haneda, T., Okada, N., Nakazawa, N., Kawakami, T., & Danbara, H. (2001). Complete DNA sequence and comparative analysis of the 50-kilobase virulence plasmid of             salmonella enterica             Serovar Choleraesuis. Infection and Immunity, 69(4), 2612–2620. https://doi.org/10.1128/iai.69.4.2612-2620.2001 
+Haneda, T., Okada, N., Nakazawa, N., Kawakami, T., & Danbara, H. (2001). Complete DNA sequence and comparative analysis of the 50-kilobase virulence plasmid of salmonella enterica Serovar Choleraesuis. Infection and Immunity, 69(4), 2612–2620. https://doi.org/10.1128/iai.69.4.2612-2620.2001 
+
+Huang, Y.-T., Liu, P.-Y., & Shih, P.-W. (2021). Homopolish: A method for the removal of systematic errors in nanopore sequencing by homologous polishing. Genome Biology, 22(1). https://doi.org/10.1186/s13059-021-02282-6 
+
+Lobato-Márquez, D., Molina-García, L., Moreno-Córdoba, I., García-del Portillo, F., & Díaz-Orejas, R. (2016). Stabilization of the virulence plasmid pslt of salmonella typhimurium by three maintenance systems and its evaluation by using a new stability test. Frontiers in Molecular Biosciences, 3. https://doi.org/10.3389/fmolb.2016.00066 
+
+Chiou, C.-S., Chen, B.-H., Wang, Y.-W., Kuo, N.-T., Chang, C.-H., & Huang, Y.-T. (2023). Correcting modification-mediated errors in nanopore sequencing by nucleotide demodification and reference-based correction. Communications Biology, 6(1). https://doi.org/10.1038/s42003-023-05605-4 
